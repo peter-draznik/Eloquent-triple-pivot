@@ -1,5 +1,5 @@
 {
-    "name": "jarektkaczyk/eloquent-triple-pivot",
+    "name": "peter-draznik/eloquent-triple-pivot",
     "description": "Many-to-many relations between 3 models",
     "license": "MIT",
     "authors": [
