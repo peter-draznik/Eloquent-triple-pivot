@@ -1,11 +1,28 @@
 {
+    "name": "jarektkaczyk/eloquent-triple-pivot",
+    "description": "Many-to-many relations between 3 models",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jarek Tkaczyk",
+            "email": "jarek@softonsofa.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": ">=4.2.0",
+        "peter-draznik/eloquent-triple-pivot": "dev-master"
+    },
+    "autoload": {
+        "psr-0": {
+            "Jarektkaczyk\\TriplePivot": "src/"
+        }
+    },
+    "minimum-stability": "stable",
     "repositories": [
         {
             "type": "vcs",
             "url": "https://github.com/peter-draznik/Eloquent-triple-pivot"
         }
     ],
-    "require": {
-        "monolog/monolog": "dev-draznik"
-    }
 }
