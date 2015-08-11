@@ -6,6 +6,6 @@
         }
     ],
     "require": {
-        "monolog/monolog": "dev-master"
+        "monolog/monolog": "dev-draznik"
     }
 }
