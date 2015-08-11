@@ -10,19 +10,12 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "illuminate/support": ">=4.2.0",
-        "peter-draznik/eloquent-triple-pivot": "dev-master"
+        "illuminate/support": ">=4.2.0"
     },
     "autoload": {
         "psr-0": {
             "Jarektkaczyk\\TriplePivot": "src/"
         }
     },
-    "minimum-stability": "stable",
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/peter-draznik/Eloquent-triple-pivot"
-        }
-    ]
+    "minimum-stability": "stable"
 }
