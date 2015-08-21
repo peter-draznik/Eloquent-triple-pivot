@@ -4,6 +4,10 @@
     "license": "MIT",
     "authors": [
         {
+            "name": "Peter Draznik",
+            "email": "Peter.Draznik@38thStreetStudios.com"
+        },
+        {
             "name": "Jarek Tkaczyk",
             "email": "jarek@softonsofa.com"
         }
