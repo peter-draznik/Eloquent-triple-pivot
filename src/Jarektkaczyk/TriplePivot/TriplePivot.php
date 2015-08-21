@@ -52,7 +52,22 @@ class TriplePivot extends Pivot {
 	public function getThird() {
 		return $this->third;
 	}
-
+	
+	/**
+	 * Return a collection of ids of the third relation.
+	 * 
+	 * @access public
+	 * @return \Illuminate\Database\Eloquent\Collection 
+	 */
+	public function getThirds($foreign_id=null) {
+		
+		$models = $this	->getQuery()
+						->where( $this->getForeignKey(), '=', $foreign_id?:$this->{$this->getForeignKey()} )
+						->where( $this->getOtherKey(), '=', $this->{$this->getOtherKey()} )
+						->get([$this->getThirdKey()]);
+		return $models;
+	}
+	
 	/**
 	 * Set the key names for the pivot model instance.
 	 *

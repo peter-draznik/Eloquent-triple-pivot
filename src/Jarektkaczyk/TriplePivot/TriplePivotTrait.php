@@ -24,10 +24,11 @@ trait TriplePivotTrait {
 	 * @returns TripleBelongsToMany
 	 */
 	public function tripleBelongsToMany( $related, $third, $table = null, $foreignKey = null, $otherKey = null, $thirdKey = null, $relation = null ) {
+		
 		if ( is_null( $relation ) ) {
 			$relation = $this->getBelongsToManyCaller();
 		}
-
+		
 		$foreignKey = $foreignKey ?: $this->getForeignKey();
 
 		$instance = new $related;
@@ -43,10 +44,12 @@ trait TriplePivotTrait {
 		}
 
 		$query = $instance->newQuery();
-
+		
 		return new TripleBelongsToMany( $query, $this, $third, $table, $foreignKey, $otherKey, $thirdKey, $relation );
 	}
-
+	
+	
+	
 	/**
 	 * Accessor for third related model
 	 *
@@ -68,11 +71,63 @@ trait TriplePivotTrait {
 		}
 
 		$key = $pivot->{$pivot->getThirdKey()};
-
+		
 		$instance = $pivot->getThird();
-
+		
 		return $pivot->thirdModel = $instance->find( $key );
 	}
+	
+	/**
+	 * Accessor for third related model
+	 *
+	 * @param int	$second_id 
+	 * @return Collection \Illuminate\Database\Eloquent\Model
+	 */
+	public function getThirdsAttribute($columns = ['*'], $foreign_id=null, $other_id=null) {
+		
+		$pivot = $this->pivot;
+		
+		if ( is_null( $pivot ) ) {
+			return null;
+		}
+
+		if ( $pivot->thirdModel ) {
+			return $pivot->thirdModel;
+		}
+		$foreign_id	= $foreign_id	?:$pivot->{$pivot->getForeignKey()};
+		$other_id	= $other_id		?:$pivot->{$pivot->getOtherKey()};
+		
+		$ids 		= $pivot->getThirds($columns, $foreign_id, $other_id);
+		$models		= [];
+		
+		foreach($ids as $arr){
+			$id = $arr->{$pivot->getThirdKey()};
+			$models[] = $pivot->getThird()->findOrFail($id);
+		}
+		
+		$instance = $pivot->getThird();
+		
+		return $pivot->thirdModel = $instance->newCollection($models);
+	}
+
+	/**
+     * Get a relationship value from a method.
+     *
+     * @param  string  $method
+     * @return mixed
+     *
+     * @throws \LogicException
+     *//*
+    protected function getRelationshipFromMethod($method)
+    {
+        $relations = $this->$method();
+
+        if (! $relations instanceof Relation) {
+            throw new LogicException('Relationship method must return an object of type '
+                .'Illuminate\Database\Eloquent\Relations\Relation');
+        }
+		return $this->relations[$method] = $relations->getResults();
+    }*/
 
 	/**
 	 * Create a new pivot model instance.
