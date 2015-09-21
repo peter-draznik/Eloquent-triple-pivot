@@ -1,6 +1,4 @@
-<?php
-
-namespace Jarektkaczyk\TriplePivot;
+<?php namespace Jarektkaczyk\TriplePivot;
 
 use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Database\Eloquent\Model;
